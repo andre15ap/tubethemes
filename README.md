@@ -2,9 +2,11 @@
 
 #### Teste for Deep Systems ####
 
-CRUD completo de produtos, utilizando Banco de Dados não-relacional Mongo.
+
+Required mongodb installed, preferably without username and password or change them in settings.py
 
 dependences:
+
 `pip install -r requirements.txt`
 
 migrates 
@@ -15,7 +17,7 @@ rum:
 
 `python manage.py runserver`
 
-Rotas:
+link:
 
 `http://localhost:8000`
 

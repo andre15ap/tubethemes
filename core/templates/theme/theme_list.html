@@ -45,4 +45,26 @@
         </div>
     </div>
 
+    <a href="#top" class="glyphicon glyphicon-chevron-up">
+        <i class="material-icons">
+            arrow_upward
+        </i>
+    </a>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 100) {
+            $('a[href="#top"]').fadeIn();
+        } else {
+            $('a[href="#top"]').fadeOut();
+        }
+    });
+
+    $('a[href="#top"]').click(function(){
+        $('html, body').animate({scrollTop : 0},800);
+        return false;
+    });
+});
+</script>
 {% endblock %}

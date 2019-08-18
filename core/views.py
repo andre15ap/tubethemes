@@ -13,13 +13,14 @@ from .forms import UserForm, ThemeForm, TubeForm
 
 class IndexTubeListView(LoginRequiredMixin, ListView):
 	model = Tube
-	paginate_by = 20
+	paginate_by = 12
 	template_name = 'tube/index_tube_list.html'
+	ordering = ['-thumbs_up']
 	
 
 class ThemeListView(LoginRequiredMixin, ListView):
 	model = Theme
-	paginate_by = 20
+	paginate_by = 10
 	template_name = 'theme/theme_list.html'
 	ordering = ['-media_thumbs']
 

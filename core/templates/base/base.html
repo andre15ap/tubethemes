@@ -25,20 +25,21 @@
 
 		<nav class="navbar fixed-top navbar-expand-lg" style="background-color:rgba(60, 25, 94, 0.877)">
 				<div class="container">
-					<a class="navbar-brand" href="{% url 'index' %}">
+					<a class="navbar-brand title-nav negrito" href="{% url 'index' %}">
 						Tube Themes
 					</a>
 					<button class="navbar-toggler icon-menu" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
+						{% comment %} <span class="navbar-toggler-icon"></span> {% endcomment %}
+						<i class="material-icons">menu</i>
 					</button>
 					<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 						<div class="navbar-nav ml-auto">
 
 							{% if user.is_authenticated %}
-									<a href="#" class="nav-item nav-link negrito"> {{user.first_name}}  </a>
+									{% comment %} <a href="#" class="nav-item nav-link negrito title-nav"> {{user.username}}  </a> {% endcomment %}
 									<a class="nav-item nav-link" href="{% url 'index' %}">Tubes <span class="sr-only">(current)</span></a>
 									<a class="nav-item nav-link" href="{% url 'themes' %}">Themes</a>
-									<a class="nav-item nav-link" href="#">{{user}}</a>
+									<a class="nav-item nav-link negrito" href="#">{{user}}</a>
 								
 									<a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
 								

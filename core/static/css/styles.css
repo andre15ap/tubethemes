@@ -51,8 +51,12 @@
   color: white; 
 }
 
-.icon-menu span{
-  color: white;
+.icon-menu i{
+  color: white !important;
+}
+
+.nav-item, .title-nav{
+  color: white !important;
 }
 .text-register{
   color: white;

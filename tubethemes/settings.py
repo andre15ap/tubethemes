@@ -81,24 +81,24 @@ WSGI_APPLICATION = 'tubethemes.wsgi.application'
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'djongo',
-#         'NAME': 'tube',
-#         'HOST': 'mongodb://localhost:27017/tube',
-#         'USER': '',
-#         'PASSWORD': ''
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'tubetheme',
-        'HOST': 'mongodb+srv://usuario:senha@cluster0-wm4d7.mongodb.net/test',
- 
+        'NAME': 'tube',
+        'HOST': 'mongodb://localhost:27017/tube',
+        'USER': '',
+        'PASSWORD': ''
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'tubetheme',
+#         'HOST': 'mongodb+srv://usuario:senha@cluster0-wm4d7.mongodb.net/test',
+ 
+#     }
+# }
 
 # mongodb+srv://usuario:<password>@cluster0-wm4d7.mongodb.net/test?retryWrites=true&w=majority
 

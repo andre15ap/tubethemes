@@ -13,7 +13,7 @@ migrates
 
 `python manage.py migrate`
 
-rum:
+run:
 
 `python manage.py runserver`
 

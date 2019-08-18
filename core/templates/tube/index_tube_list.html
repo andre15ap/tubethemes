@@ -39,7 +39,11 @@
                                     <span id="id_up-{{tube.id}}">{{tube.thumbs_up}} </span>
                                     <i onclick="up_clicked('{{tube.id}}')" class="material-icons up">thumb_up</i> </span>
                             </p>
-                            <p class="legend">{{tube.name}}</p>
+                            <p class="legend">
+                                <a class="link-a" href="{{tube.link}}" target="_blank">
+                                    {{tube.name}}
+                                </a>
+                            </p>
                         </div>
                     
                         <script type="text/javascript">

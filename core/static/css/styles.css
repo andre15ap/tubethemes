@@ -55,6 +55,15 @@
   color: white !important;
 }
 
+.link-a{
+  color: white;
+}
+
+.link-a:hover{
+  text-decoration: none;
+  color: white;
+}
+
 .nav-item, .title-nav{
   color: white !important;
 }

@@ -12,7 +12,7 @@ class TubeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(TubeForm, self).__init__(*args, **kwargs)
         self.fields['name'].widget.attrs = {'class': 'form-control','placeholder':'type name tube'}
-        self.fields['link'].widget.attrs = {'class': 'form-control','placeholder':'type the link youtube'}
+        self.fields['link'].widget.attrs = {'class': 'form-control','placeholder':'type the link youtube (url)'}
         self.fields['description'].widget.attrs = {'class': 'form-control','rows': 3, 'cols': 40, 'style':'resize:none','placeholder':'description option'}
         self.fields['theme'].widget.attrs = {'class': 'form-control'}
 

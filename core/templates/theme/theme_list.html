@@ -1,0 +1,48 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}
+  themes | {{ block.super }}
+{% endblock %}
+
+{% comment %} {% block navegar %}
+    <li class="breadcrumb-item">home</li>
+    <li class="breadcrumb-item active" aria-current="page">List Themes</li>
+{% endblock %} {% endcomment %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h2>TOP Themes</h2>
+        </div>
+    </div>
+
+    <hr \>
+
+    <div class="row">
+        <div class="col-md-12">
+           
+                <li class="theme-conteiner">
+                    <span class="theme-item negrito">Theme</span>
+                    <span class="theme-item">Score</span>
+                </li>
+           
+            {% for theme in object_list %}
+            <ul class="list-group list-group-flush theme-list">
+                <li class="list-group-item theme-conteiner">
+                 <p class="theme-item">{{theme}}</p>
+                 <p class="theme-item">{{theme.media_thumbs}}</p>
+                </li>
+            
+            {% endfor %}
+       
+        </div>
+    </div>
+
+    <div  class="row margino-paginate">
+        <div class="col-md-12">
+            {% include 'tube/paginate/paginate.html' %}
+        </div>
+    </div>
+
+{% endblock %}

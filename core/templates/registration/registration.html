@@ -1,0 +1,88 @@
+
+{% extends "base/base.html" %}
+
+
+{% block title %}
+  Register | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+{% comment %} {% if messages %}
+   {% for msg in messages %}
+     <div class="alert alert-{{msg.level_tag}}" role="alert">
+            {{msg.message}}
+           </div>
+   {% endfor %}
+{% endif %}  {% endcomment %}
+
+  {% comment %} <h1 class="font-grande negrito">Regiter</h1>
+
+  <form class="form-horizontal" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+
+    {% for error in form.non_field_errors %}
+      <div class="alert alert-danger">
+        {{error}}
+      </div>
+    {% endfor %}
+
+    <fieldset>
+          {% for field in form %}
+            <p>
+              {{ field.label_tag }}<br>
+              {{ field }}
+              {% if field.help_text %}
+                <small style="color: grey">{{ field.help_text }}</small>
+              {% endif %}
+              {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+              {% endfor %}
+            </p>
+          {% endfor %}
+          <button class="btn btn-success" type="submit">Save</button>
+  </form> {% endcomment %}
+
+<div class="row justify-content-center">
+  <div class="col-12 col-md-6">
+    <div class="card card-shedow">
+      <div class=" text-center">
+          <div class="alert login-title" role="alert">
+              <h3 class="negrito">Register | TubeThemes</h3>
+            </div>
+        
+        {% comment %} <img src="{% static 'img/uft.jpg' %}"/> {% endcomment %}
+        <i  class="material-icons icon-login">account_box</i>
+        <hr>
+      </div>
+      {% comment %} <img class="card-img-top" src="{% static 'img/uft.jpg' %}" alt="Card image cap img"> {% endcomment %}
+      <div class="card-body">
+      <form class="" action="" method="post">
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div class="form-group row">
+            <div class="col-sm-12 label-login">
+            {{ field.label_tag }}
+            </div>
+            <div class="col-sm-12">
+                {{ field }}
+                {% if field.help_text %}
+                <small style="color: grey">{{ field.help_text }}</small>
+              {% endif %}
+              {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+              {% endfor %}
+            </div>
+          </div>
+              
+              
+        {% endfor %}
+        
+        <button type="submit" class="btn btn-success btn-lg float-right">Save</button>   
+        
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

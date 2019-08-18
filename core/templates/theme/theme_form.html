@@ -1,0 +1,46 @@
+{% extends "base/base.html" %}
+
+
+{% block title %}
+  Register | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+   {% for msg in messages %}
+     <div class="alert alert-{{msg.level_tag}}" role="alert">
+            {{msg.message}}
+           </div>
+   {% endfor %}
+{% endif %} 
+
+  <h1 class="font-grande negrito">New Theme</h1>
+
+  <form class="form-horizontal" autocomplete="off" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+
+    {% for error in form.non_field_errors %}
+      <div class="alert alert-danger">
+        {{error}}
+      </div>
+    {% endfor %}
+
+    <fieldset>
+          {% for field in form %}
+            <p>
+              {{ field.label_tag }}<br>
+              {{ field }}
+              {% if field.help_text %}
+                <small style="color: grey">{{ field.help_text }}</small>
+              {% endif %}
+              {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+              {% endfor %}
+            </p>
+          {% endfor %}
+          <button class="btn btn-success" type="submit">Save</button>
+  </form>
+
+
+{% endblock %}

@@ -1,0 +1,84 @@
+<div class="row">
+    <div class="col-md-12">
+        <nav>
+            <ul class="pagination">
+                {% if not page_obj.number == 1 %}
+                 <li class="page-item">
+                    <a title="Primeira" class="page-link" href="?page={{1}}">
+                        <!-- Primeira {{paginator.first_page}} -->
+                        <i class="material-icons icone_pequeno">arrow_back</i>
+                    </a>
+
+                </li>
+                {% endif %}
+
+                {% if page_obj.number|add:'-4' > 1 %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.number|add:'-5' }}">
+                            <i class="material-icons icone_pequeno">Primeira</i>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                            <!-- <i class="material-icons icone_pequeno">Anterior</i> -->
+                            <i class="material-icons icone_pequeno">keyboard_arrow_left</i>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="disabled">
+                        <i class=""></i>
+                    </li>
+                {% endif %}
+
+                {% for i in page_obj.paginator.page_range %}
+                    {% if page_obj.number == i %}
+                        <li class="page-item active">
+                            <a class="page-link">
+                                {{ i }}
+                            </a>
+                        </li>
+                    {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ i }}">
+                                {{ i }}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                            <!-- <i class="material-icons icone_pequeno">Próxima</i> -->
+                            <i class="material-icons icone_pequeno">keyboard_arrow_right</i>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="disabled"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span></li>
+                {% endif %}
+
+                {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.number|add:'5' }}">
+                            <i class="material-icons icone_pequeno">Ultima</i>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% if not page_obj.number == paginator.num_pages %}
+                 <li class="page-item">
+                    <a title="Ultima {{paginator.num_pages}}" class="page-link" href="?page={{paginator.num_pages}}">
+                        <!-- última {{paginator.num_pages}} -->
+                        <i class="material-icons icone_pequeno">arrow_forward</i>
+                    </a>
+                </li>
+                {% endif %}
+
+            </ul>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,152 @@
+
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}
+  tubes | {{ block.super }}
+{% endblock %}
+
+{% comment %} {% block navegar %}
+    <li class="breadcrumb-item active" aria-current="page">home</li>
+{% endblock %} {% endcomment %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Tubes</h2>
+        </div>
+    </div>
+
+    <a href="{% url 'new_tube' %}" class="btn btn-success">New Tube</a>
+    <a href="{% url 'new_theme' %}" class="btn btn-success">New Theme</a>
+
+    <div class="row">
+        <div class="col-md-12">
+            <hr \>
+            <section class="flex">
+                <div class="row">
+                    {% for tube in object_list %}
+                    
+                        <div class="col-md-4">
+                            <img id="id-img-{{tube.id}}" class="img-fluid img-shedow" src="{% static 'img/youtube.jpg' %}" />
+                            <p class="likes">
+                                <span> 
+                                    <i onclick="down_clicked('{{tube.id}}')" class="material-icons down">thumb_down</i>  
+                                    <span id="id_down-{{tube.id}}">{{tube.thumbs_down}} </span>
+                                </span>
+                                <span>({{tube.theme}})</span>
+                                <span> 
+                                    <span id="id_up-{{tube.id}}">{{tube.thumbs_up}} </span>
+                                    <i onclick="up_clicked('{{tube.id}}')" class="material-icons up">thumb_up</i> </span>
+                            </p>
+                            <p class="legend">{{tube.name}}</p>
+                        </div>
+                    
+                        <script type="text/javascript">
+                            var iframe_src = '{{tube.link}}';
+                            try{
+                                var youtube_video_id = iframe_src.match(/youtube\.com.*(\?v=|\/embed\/)(.{11})/).pop();
+
+                                if (youtube_video_id.length == 11) {
+                                    var video_thumbnail = '//img.youtube.com/vi/'+youtube_video_id+'/0.jpg';
+                                    var img = document.getElementById('id-img-{{tube.id}}');
+                                    img.src = video_thumbnail;
+                                }
+                            }catch(e){
+                                console.log('link invalido');
+                            }
+                            
+                        </script>
+                    {% endfor %}
+                </div>            
+            </section>
+        </div>
+    </div>
+{% comment %} Total = {{paginator.count}} {% endcomment %}
+        
+   
+<div>
+    {% include 'tube/paginate/paginate.html' %}
+</div>
+
+<a href="#top" class="glyphicon glyphicon-chevron-up">
+    <i class="material-icons">
+        arrow_upward
+    </i>
+</a>
+
+<script type="text/javascript">
+
+function up_clicked(id){
+    let span = document.querySelector('#id_up-'+id);
+    let num = Number(span.textContent);
+    num += 1;
+    span.textContent = num.toString();
+    
+    request_url = '{% url 'up_tube' %}';
+    $.ajax({
+        url: request_url,
+        type: 'post',
+        dataType: 'json',
+        data: {id: id, csrfmiddlewaretoken: '{{ csrf_token }}'},
+        beforeSend: function () {
+
+        },
+        //OCORREU TUDO CERTO NA REQUISIÇÃO
+        success: function (data) {
+          console.log('sucesso');
+        }
+    });
+}
+
+function down_clicked(id){
+    let span = document.querySelector('#id_down-'+id);
+    let num = Number(span.textContent);
+    num += 1;
+    span.textContent = num.toString()
+
+    request_url = '{% url 'down_tube' %}';
+    $.ajax({
+        url: request_url,
+        type: 'post',
+        dataType: 'json',
+        data: {id: id, csrfmiddlewaretoken: '{{ csrf_token }}'},
+        beforeSend: function () {
+
+        },
+        //OCORREU TUDO CERTO NA REQUISIÇÃO
+        success: function (data) {
+          console.log('sucesso');
+        }
+    });
+}
+
+function tumbnail(url){
+    var iframe_src       = 'https://www.youtube.com/watch?v=Iuz_jc96bQk';
+    var youtube_video_id = iframe_src.match(/youtube\.com.*(\?v=|\/embed\/)(.{11})/).pop();
+
+    if (youtube_video_id.length == 11) {
+        var video_thumbnail = '//img.youtube.com/vi/'+youtube_video_id+'/0.jpg';
+        return video_thumbnail;
+    }
+}
+
+$(document).ready(function(){
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 100) {
+            $('a[href="#top"]').fadeIn();
+        } else {
+            $('a[href="#top"]').fadeOut();
+        }
+    });
+
+    $('a[href="#top"]').click(function(){
+        $('html, body').animate({scrollTop : 0},800);
+        return false;
+    });
+});
+
+
+</script>    
+
+{% endblock %}
